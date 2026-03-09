@@ -1,0 +1,32 @@
+# Connection & auth: loaded from .env (JIRA_URL, JIRA_EMAIL, JIRA_API_TOKEN or JIRA_PAT)
+# See .env.sample
+
+# Auto-create users not found in Jira (Server/DC only; Cloud needs SCIM)
+create_users: false
+
+# Assign tickets to users
+assign: false
+
+# Project to create tickets in
+project_key: PROJ
+
+# Ticket configuration — all standard Jira fields supported
+ticket:
+  issue_type: Task            # Task, Bug, Story, Epic, Sub-task, etc.
+  summary: "Onboarding: {user}"
+  description: "Onboarding ticket for {user} ({email})."
+  priority: Medium            # Highest, High, Medium, Low, Lowest
+  # labels:
+  #   - onboarding
+  #   - q1-2026
+  # components:
+  #   - Platform
+  # fix_versions:
+  #   - "1.0"
+  # epic_link: PROJ-100       # Epic key (uses customfield_10014)
+  # due_date: "2026-04-01"    # YYYY-MM-DD
+  # transition_to: In Progress # Transition after creation (exact name)
+
+  # Arbitrary custom fields (field ID → value)
+  # custom_fields:
+  #   customfield_10050: "some value"

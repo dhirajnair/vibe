@@ -1,0 +1,21 @@
+# Connection & auth: loaded from .env (JIRA_URL, JIRA_EMAIL, JIRA_API_TOKEN)
+# See .env.sample
+
+create_users: false
+
+assign: false
+
+project_key: CD
+
+ticket:
+  issue_type: AI Native Story
+  summary: "{user}"
+  description: ""
+  priority: Medium
+  parent: CD-738                # Parent epic: Feb16/AINative/26####update with latest epic for cohort####
+  transition_to: In Training
+
+  # To find sprint ID:
+  #   curl -s -u "EMAIL:TOKEN" "https://smoothstack.atlassian.net/rest/agile/1.0/board/1/sprint?state=active"
+  custom_fields:
+    customfield_10020: 1811    # Sprint: CD Q1 '26

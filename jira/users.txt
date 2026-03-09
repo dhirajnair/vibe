@@ -1,0 +1,5 @@
+# One user per line: email[,display_name]
+# Lines starting with # are ignored
+alice@company.com, Alice Smith
+bob@company.com, Bob Jones
+charlie@company.com
