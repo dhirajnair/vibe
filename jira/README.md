@@ -10,19 +10,9 @@ conda activate jira-tickets
 pip install -r requirements.txt
 ```
 
-## API Token Scopes
+## API Token
 
-Create a Classic API token at **Settings > API tokens** with these scopes:
-
-| Scope | Required | Purpose |
-|---|---|---|
-| `read:jira-user` | Yes | Search users by email |
-| `read:jira-work` | Yes | Read issue data and transitions |
-| `read:account` | Yes | Resolve user profiles |
-| `write:jira-work` | Yes | Create issues, assign, transition |
-| `manage:servicedesk-customer` | Only if `create_users: true` | Auto-create missing users |
-
-Not needed: `manage:jira-configuration`, `manage:jira-data-provider`, `manage:jira-project`, `manage:jira-webhook`, `read:me`, `read:servicedesk-request`.
+Create an API token at [id.atlassian.com/manage-profile/security/api-tokens](https://id.atlassian.com/manage-profile/security/api-tokens). This is a plain token (no scopes) — it inherits your account's permissions.
 
 ## Configuration
 
@@ -32,11 +22,12 @@ Not needed: `manage:jira-configuration`, `manage:jira-data-provider`, `manage:ji
 cp .env.sample .env
 ```
 
-2. Fill in your credentials in `.env`:
+2. Fill in `.env`:
 
 ```
-JIRA_EMAIL=dhiraj.nair@uptimecrew.com
-JIRA_API_TOKEN=ATATT3x...
+JIRA_URL=https://yourorg.atlassian.net
+JIRA_EMAIL=you@company.com
+JIRA_API_TOKEN=your-api-token
 ```
 
 3. Copy and edit the config:
