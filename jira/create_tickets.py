@@ -4,6 +4,7 @@
 import argparse
 import os
 import sys
+from types import SimpleNamespace
 
 import yaml
 from dotenv import load_dotenv
@@ -138,7 +139,8 @@ def create_ticket(jira: JIRA, config: dict, user):
 
     if config.get("assign", True):
         assignee_id = getattr(user, "accountId", None) or getattr(user, "name", None)
-        jira.assign_issue(issue, assignee_id)
+        if assignee_id:
+            jira.assign_issue(issue, assignee_id)
 
     target = config["ticket"].get("transition_to")
     if target:
@@ -171,11 +173,19 @@ def main():
 
     for u in users:
         print(f"[{u['email']}]")
-        jira_user = get_or_create_user(jira, u["email"], u["display_name"], auto_create)
-        if not jira_user:
-            skip += 1
-            continue
-        issue = create_ticket(jira, config, jira_user)
+        if auto_create:
+            ticket_user = get_or_create_user(
+                jira, u["email"], u["display_name"], auto_create
+            )
+            if not ticket_user:
+                skip += 1
+                continue
+        else:
+            ticket_user = SimpleNamespace(
+                displayName=u["display_name"],
+                emailAddress=u["email"],
+            )
+        issue = create_ticket(jira, config, ticket_user)
         print(f"  ✓ {issue.key}: {issue.fields.summary}")
         ok += 1
 

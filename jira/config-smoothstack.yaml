@@ -12,8 +12,8 @@ ticket:
   summary: "{user}"
   description: ""
   priority: Medium
-  parent: CD-738                # Parent epic: Feb16/AINative/26####update with latest epic for cohort####
-  transition_to: In Training
+  parent: CD-812                # Parent epic: Feb16/AINative/26####update with latest epic for cohort####
+  transition_to: To Do
 
   # To find sprint ID:
   #   curl -s -u "EMAIL:TOKEN" "https://smoothstack.atlassian.net/rest/agile/1.0/board/1/sprint?state=active"
